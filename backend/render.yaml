@@ -3,7 +3,6 @@ services:
     name: agrivision-ai-backend
     env: python
     plan: starter
-<<<<<<< HEAD
     rootDir: backend
     # rootDir is "backend", so paths here are relative to that folder.
     buildCommand: pip install -r requirements.txt
@@ -11,12 +10,6 @@ services:
     envVars:
       # Relative paths are resolved from the backend folder. The model file is
       # the bundled Keras 3 compatible copy under model/.cache when model.h5 is absent.
-=======
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    rootDir: backend
-    envVars:
->>>>>>> origin/main
       - key: MODEL_PATH
         value: ../model/model.h5
       - key: ALLOWED_ORIGINS
