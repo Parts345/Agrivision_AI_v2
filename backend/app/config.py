@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 
+<<<<<<< HEAD
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 ROOT_DIR = Path(__file__).resolve().parents[2]
 
@@ -29,14 +30,23 @@ def _fallback_to_bundled(path: Path) -> Path:
     if path == DEFAULT_MODEL_PATH and not path.exists() and BUNDLED_MODEL_PATH.exists():
         return BUNDLED_MODEL_PATH
     return path
+=======
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DEFAULT_MODEL_PATH = ROOT_DIR / "model" / "model.h5"
+>>>>>>> origin/main
 
 
 class Settings:
     app_name: str = "AgriVision AI API"
+<<<<<<< HEAD
     api_version: str = "2.0.0"
     model_path: Path = _fallback_to_bundled(_resolve_path(os.getenv("MODEL_PATH"), DEFAULT_MODEL_PATH))
     database_path: Path = _resolve_path(os.getenv("DATABASE_PATH"), DEFAULT_DATABASE_PATH)
     max_upload_bytes: int = int(os.getenv("MAX_UPLOAD_BYTES", str(10 * 1024 * 1024)))
+=======
+    api_version: str = "1.0.0"
+    model_path: Path = Path(os.getenv("MODEL_PATH", DEFAULT_MODEL_PATH))
+>>>>>>> origin/main
     allowed_origins: list[str] = [
         origin.strip()
         for origin in os.getenv(

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+<<<<<<< HEAD
 import io
 import logging
 import re
@@ -38,16 +39,34 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(title=settings.app_name, version=settings.api_version, lifespan=lifespan)
+=======
+from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.config import settings
+from app.disease_info import CLASS_NAMES, DISPLAY_NAMES
+from app.schemas import HealthResponse, PredictionResponse
+from app.services.model_service import load_model, model_is_loaded, predict
+
+
+app = FastAPI(title=settings.app_name, version=settings.api_version)
+>>>>>>> origin/main
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.allowed_origins,
+<<<<<<< HEAD
     allow_credentials=False,
     allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
+=======
+    allow_credentials=True,
+    allow_methods=["*"],
+>>>>>>> origin/main
     allow_headers=["*"],
 )
 
 
+<<<<<<< HEAD
 def _device_id(value: str | None) -> str:
     if not value or not DEVICE_ID_PATTERN.match(value):
         raise HTTPException(status_code=400, detail="A valid device id is required.")
@@ -67,6 +86,14 @@ def analyze(image_bytes: bytes) -> tuple[dict, bytes]:
 
 def _label_for(class_name: str) -> str:
     return DISPLAY_NAMES.get(class_name, class_name)
+=======
+@app.on_event("startup")
+async def warm_model() -> None:
+    try:
+        load_model()
+    except Exception as exc:
+        print(f"Model warmup skipped: {exc}")
+>>>>>>> origin/main
 
 
 @app.get("/health", response_model=HealthResponse)
@@ -75,11 +102,16 @@ async def health() -> HealthResponse:
         status="ok",
         model_loaded=model_is_loaded(),
         model_path=str(settings.model_path),
+<<<<<<< HEAD
         classes=[_label_for(name) for name in CLASS_NAMES],
+=======
+        classes=[DISPLAY_NAMES.get(name, name) for name in CLASS_NAMES],
+>>>>>>> origin/main
     )
 
 
 @app.post("/predict", response_model=PredictionResponse)
+<<<<<<< HEAD
 async def predict_endpoint(
     file: UploadFile = File(...),
     x_device_id: str | None = Header(default=None),
@@ -181,3 +213,23 @@ async def delete_scan(scan_id: str, x_device_id: str | None = Header(default=Non
 async def stats() -> StatsResponse:
     data = await run_in_threadpool(db.get_stats)
     return StatsResponse(**data)
+=======
+async def predict_endpoint(file: UploadFile = File(...)) -> PredictionResponse:
+    if not file.content_type or not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="Please upload a valid image file.")
+
+    try:
+        image_bytes = await file.read()
+        if not image_bytes:
+            raise HTTPException(status_code=400, detail="Uploaded image is empty.")
+        result = predict(image_bytes)
+        return PredictionResponse(**result)
+    except HTTPException:
+        raise
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Prediction failed: {exc}") from exc
+>>>>>>> origin/main

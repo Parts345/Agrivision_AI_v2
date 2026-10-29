@@ -12,11 +12,20 @@ import numpy as np
 from PIL import Image, ImageOps
 import tensorflow as tf
 
+<<<<<<< HEAD
 from app.config import MODEL_CACHE_DIR, settings
 from app.disease_info import CLASS_NAMES, get_disease_details
 
 
 DEFAULT_IMAGE_SIZE = (224, 224)
+=======
+from app.config import settings
+from app.disease_info import CLASS_NAMES, DISPLAY_NAMES, get_disease_details
+
+
+DEFAULT_IMAGE_SIZE = (224, 224)
+MODEL_CACHE_DIR = settings.model_path.parent / ".cache"
+>>>>>>> origin/main
 KERAS3_COMPATIBLE_MODEL_PATH = MODEL_CACHE_DIR / "model_keras3_compatible.h5"
 KERAS3_COMPATIBILITY_PATCH_VERSION = "2"
 
@@ -49,8 +58,12 @@ def _patch_legacy_h5_for_keras3(source_path: Path) -> Path:
             if cached_file.attrs.get("compatibility_patch_version") == KERAS3_COMPATIBILITY_PATCH_VERSION:
                 return KERAS3_COMPATIBLE_MODEL_PATH
 
+<<<<<<< HEAD
     if Path(source_path).resolve() != KERAS3_COMPATIBLE_MODEL_PATH.resolve():
         shutil.copyfile(source_path, KERAS3_COMPATIBLE_MODEL_PATH)
+=======
+    shutil.copyfile(source_path, KERAS3_COMPATIBLE_MODEL_PATH)
+>>>>>>> origin/main
     mean_code = _encoded_function_code(_channel_reduce_mean)
     max_code = _encoded_function_code(_channel_reduce_max)
     merge_layers = {"Add", "Multiply", "Average", "Maximum", "Minimum", "Concatenate"}
@@ -108,8 +121,16 @@ def load_model() -> tf.keras.Model:
 
 
 def model_is_loaded() -> bool:
+<<<<<<< HEAD
     """Report whether the model is already in memory without triggering a load."""
     return load_model.cache_info().currsize > 0
+=======
+    try:
+        load_model()
+        return True
+    except Exception:
+        return False
+>>>>>>> origin/main
 
 
 def _get_model_input_size(model: tf.keras.Model) -> tuple[int, int]:
@@ -157,9 +178,14 @@ def predict(image_bytes: bytes) -> dict[str, object]:
     best_index = int(np.argmax(probabilities))
     class_name = CLASS_NAMES[best_index]
     details = get_disease_details(class_name)
+<<<<<<< HEAD
     # Keys are the internal class names so the frontend can translate them.
     probability_map = {
         name: float(probabilities[index])
+=======
+    probability_map = {
+        DISPLAY_NAMES.get(name, name): float(probabilities[index])
+>>>>>>> origin/main
         for index, name in enumerate(CLASS_NAMES)
     }
 

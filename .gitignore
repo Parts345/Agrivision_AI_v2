@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # =========================
 # Python
@@ -72,3 +73,32 @@ checkpoints/
 runs/
 wandb/
 tensorboard/
+=======
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+venv/
+backend/.venv/
+
+# Environment variables
+.env
+
+# VS Code
+.vscode/
+
+# AI Model
+model/*.h5
+
+# TensorFlow checkpoints
+checkpoints/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+>>>>>>> origin/main

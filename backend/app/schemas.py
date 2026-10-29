@@ -11,7 +11,10 @@ class HealthResponse(BaseModel):
 
 
 class PredictionResponse(BaseModel):
+<<<<<<< HEAD
     scan_id: str | None = None
+=======
+>>>>>>> origin/main
     predicted_class: str
     predicted_label: str
     confidence: float
@@ -22,6 +25,7 @@ class PredictionResponse(BaseModel):
     prevention: list[str]
     treatment: list[str]
     risk_level: str
+<<<<<<< HEAD
 
 
 class ScanSummary(BaseModel):
@@ -59,3 +63,5 @@ class StatsResponse(BaseModel):
     by_class: dict[str, int]
     daily: list[DailyCount]
     recent: list[RecentScan]
+=======
+>>>>>>> origin/main
