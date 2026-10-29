@@ -1,0 +1,74 @@
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+venv/
+env/
+ENV/
+backend/.venv/
+
+# =========================
+# Environment variables / secrets
+# =========================
+.env
+.env.*
+!.env.example
+!.env.sample
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+!frontend/.env.sample
+
+# =========================
+# Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Node.js / React / Vite
+# =========================
+node_modules/
+frontend/node_modules/
+dist/
+build/
+.vite/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# =========================
+# Logs and temporary files
+# =========================
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# =========================
+# Training artifacts / checkpoints
+# Keep final model files trackable.
+# =========================
+checkpoints/
+runs/
+wandb/
+tensorboard/

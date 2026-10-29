@@ -1,0 +1,298 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+    --bg: #07110d;
+    --panel: rgba(18, 36, 27, 0.72);
+    --panel-strong: rgba(25, 55, 39, 0.88);
+    --line: rgba(178, 255, 196, 0.16);
+    --text: #ecfdf5;
+    --muted: #9fb8aa;
+    --green: #7ed957;
+    --green-soft: #b8ff78;
+    --gold: #f7c948;
+    --danger: #ff7a7a;
+}
+
+html, body, [class*="css"] {
+    font-family: "Inter", sans-serif;
+}
+
+.stApp {
+    background:
+        radial-gradient(circle at top left, rgba(126, 217, 87, 0.18), transparent 32rem),
+        linear-gradient(135deg, #07110d 0%, #0d1f17 48%, #101713 100%);
+    color: var(--text);
+}
+
+[data-testid="stSidebar"] {
+    background: rgba(6, 18, 12, 0.96);
+    border-right: 1px solid var(--line);
+}
+
+[data-testid="stSidebar"] * {
+    color: var(--text);
+}
+
+.sidebar-brand {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--green-soft);
+    letter-spacing: 0;
+    margin-bottom: 0.5rem;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+    padding: 2.3rem;
+    margin: 0.5rem 0 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background:
+        linear-gradient(135deg, rgba(18, 52, 35, 0.94), rgba(8, 21, 15, 0.72)),
+        url("https://images.unsplash.com/photo-1536657464919-892534f60d6e?auto=format&fit=crop&w=1400&q=80");
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.eyebrow {
+    margin: 0 0 0.4rem;
+    color: var(--green-soft);
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.76rem;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 4.9rem);
+    line-height: 1.02;
+    color: #ffffff;
+}
+
+.hero-copy {
+    max-width: 760px;
+    margin-top: 1rem;
+    color: #dcefe4;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.hero-stat {
+    min-width: 145px;
+    text-align: center;
+    padding: 1.3rem;
+    border-radius: 8px;
+    background: rgba(4, 14, 9, 0.58);
+    border: 1px solid var(--line);
+}
+
+.hero-stat span {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--green-soft);
+}
+
+.hero-stat small,
+.metric-card small {
+    color: var(--muted);
+}
+
+.section-title {
+    margin: 1.6rem 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--green-soft);
+    text-transform: uppercase;
+}
+
+.glass-card,
+.metric-card,
+.solution-card,
+.empty-state,
+.prediction-banner {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(16px);
+}
+
+.glass-card {
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.glass-card h3,
+.solution-card h3 {
+    color: #ffffff;
+    margin: 0 0 0.45rem;
+}
+
+.glass-card p {
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.glass-card.subtle {
+    background: rgba(28, 49, 41, 0.52);
+}
+
+.empty-state {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    text-align: center;
+    padding: 2rem;
+}
+
+.empty-state strong {
+    color: var(--text);
+    font-size: 1.25rem;
+}
+
+.metric-card {
+    padding: 1.15rem;
+    min-height: 138px;
+}
+
+.metric-card span {
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
+.metric-card strong {
+    display: block;
+    color: #ffffff;
+    font-size: 1.75rem;
+    margin: 0.55rem 0;
+}
+
+.prediction-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.4rem;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, rgba(42, 91, 62, 0.9), rgba(11, 25, 18, 0.82));
+}
+
+.prediction-banner.compact {
+    display: block;
+}
+
+.prediction-banner span {
+    color: var(--green-soft);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.76rem;
+}
+
+.prediction-banner h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin: 0.25rem 0;
+}
+
+.prediction-banner p {
+    color: #dcefe4;
+    margin: 0;
+    line-height: 1.65;
+}
+
+.confidence-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    border: 10px solid var(--green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+    background: rgba(4, 14, 9, 0.55);
+}
+
+.confidence-ring strong {
+    font-size: 1.7rem;
+    color: #ffffff;
+}
+
+.confidence-ring small {
+    color: var(--muted);
+}
+
+.solution-card {
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    min-height: 220px;
+}
+
+.solution-card ul {
+    padding-left: 1.1rem;
+    margin-bottom: 0;
+}
+
+.solution-card li {
+    color: #dcefe4;
+    margin-bottom: 0.55rem;
+    line-height: 1.55;
+}
+
+.stButton > button,
+.stDownloadButton > button {
+    border-radius: 8px;
+    border: 1px solid rgba(184, 255, 120, 0.35);
+    background: linear-gradient(135deg, #7ed957, #b8ff78);
+    color: #07110d;
+    font-weight: 800;
+    min-height: 3rem;
+}
+
+[data-testid="stFileUploader"] {
+    border: 1px dashed rgba(184, 255, 120, 0.45);
+    border-radius: 8px;
+    padding: 1rem;
+    background: rgba(14, 31, 22, 0.58);
+}
+
+[data-testid="stDataFrame"] {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+footer {
+    margin-top: 2rem;
+    padding: 1.2rem 0;
+    text-align: center;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+}
+
+@media (max-width: 760px) {
+    .hero,
+    .prediction-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero {
+        padding: 1.5rem;
+    }
+
+    .confidence-ring {
+        width: 100px;
+        height: 100px;
+    }
+}
